@@ -1,6 +1,8 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-
+	import { AdrianState, createState } from './state.svelte';
+	const state = createState();
+	const state2 = new AdrianState();
 	let {
 		name,
 		fake_name = 'Bartek',
@@ -14,7 +16,10 @@
 
 	{@render children()}
 
-	<h3>{@render second_child()}</h3>
+	<h3>{@render second_child(name)}</h3>
 </div>
 <!-- <h2>{name.replaceAll('A', 'a')}</h2> -->
 <!-- <p>{fake_name}</p> -->
+
+<button onclick={state.up}>{state.value}</button>
+<button onclick={() => state2.up()}>{state2.value}</button>
